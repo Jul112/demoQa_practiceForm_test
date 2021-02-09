@@ -12,19 +12,19 @@ import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.screenshot;
 
 
 public class PrcticeFormTest {
     String name = "Juk";
     String lastName = "Jukov";
     String email = "juk@jukov.com";
+    String gender = "Male";    String hobby = "Reading";
     String phoneNumber = "3345647891";
     String monthOfBirth = "April";
     String yearOfBirth = "1999";
     String dayOfBirth = "09";
     String subject = "Chemistry";
-    String gender = "Male";
-    String hobby = "Reading";
     String currentAddress = "HaryanaKarnal 3 Current Address";
     String state = "Haryana";
     String city = "Karnal";
@@ -62,6 +62,7 @@ public class PrcticeFormTest {
         $(byText(state)).click();
         $("#city").click();
         $(byText(city)).click();
+        String pngTestAct = screenshot("scr_act_test");
         $("#submit").click();
 
         //assert
@@ -70,14 +71,17 @@ public class PrcticeFormTest {
         $$("tbody tr").filterBy(text("Student Email")).shouldHave(texts(email));
         $$("tbody tr").filterBy(text("Gender")).shouldHave(texts(gender));
         $$("tbody tr").filterBy(text("Mobile")).shouldHave(texts(phoneNumber));
-        $$("tbody tr").filterBy(text("Date of Birth")).shouldHave(texts(dayOfBirth+" "+monthOfBirth+" "+yearOfBirth));
+        $$("tbody tr").filterBy(text("Date of Birth")).shouldHave(texts(dayOfBirth+" "+monthOfBirth+","+yearOfBirth));
         $$("tbody tr").filterBy(text("Subjects")).shouldHave(texts(subject));
         $$("tbody tr").filterBy(text("Hobbies")).shouldHave(texts(hobby));
         $$("tbody tr").filterBy(text("Picture")).shouldHave(texts("pict.jpg"));
         $$("tbody tr").filterBy(text("Address")).shouldHave(texts(currentAddress));
-        $$("tbody tr").filterBy(text("State and City")).shouldHave(texts(state+city));
+        $$("tbody tr").filterBy(text("State and City")).shouldHave(texts(state+" "+city));
+        String pngTestAssert = screenshot("scr_assert_test");
         $("button#closeLargeModal").click();
         $("#example-modal-sizes-title-lg").shouldBe(hidden);
+        String pngTestAssertClose = screenshot("scr_asserClose_test");
+
 
 
 
