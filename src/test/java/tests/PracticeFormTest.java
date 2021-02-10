@@ -1,17 +1,14 @@
 package tests;
 
+import java.io.File;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-
 
 public class PracticeFormTest {
     String name = "Juk";
@@ -26,7 +23,6 @@ public class PracticeFormTest {
     String currentAddress = "HaryanaKarnal 3 Current Address";
     String state = "Haryana";
     String city = "Karnal";
-
     String filePath="./src/test/resources/pict.jpg";
 
     @BeforeAll
@@ -39,7 +35,6 @@ public class PracticeFormTest {
         //arrange
         open("https://demoqa.com/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
-
         //act
         $("#firstName").setValue(name);
         $("#lastName").setValue(lastName);
@@ -61,7 +56,6 @@ public class PracticeFormTest {
         $(byText(city)).click();
         String pngTestAct = screenshot("scr_act_test");
         $("#submit").click();
-
         //assert
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $$("tbody tr").filterBy(text("Student name")).shouldHave(texts(name + " " + lastName));
@@ -78,25 +72,5 @@ public class PracticeFormTest {
         $("button#closeLargeModal").click();
         $("#example-modal-sizes-title-lg").shouldBe(hidden);
         String pngTestAssertClose = screenshot("scr_asserClose_test");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 }
