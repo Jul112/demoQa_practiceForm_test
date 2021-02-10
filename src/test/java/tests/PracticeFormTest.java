@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.screenshot;
 
 
-public class PrcticeFormTest {
+public class PracticeFormTest {
     String name = "Juk";
     String lastName = "Jukov";
     String email = "juk@jukov.com";
@@ -40,8 +40,7 @@ public class PrcticeFormTest {
     void fillPracticeFormTest() {
         //arrange
         open("https://demoqa.com/automation-practice-form");
-        SelenideElement mainHeader = $(".main-header");
-        mainHeader.shouldHave(text("Practice Form"));
+        $(".main-header").shouldHave(text("Practice Form"));
 
         //act
         $("#firstName").setValue(name);
